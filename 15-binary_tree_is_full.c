@@ -22,10 +22,10 @@ size_t binary_tree_height(const binary_tree_t *tree)
 }
 
 /**
- * binary_tree_balance - that measures the balance factor of
+ * binary_tree_balance - counts the nodes with at least 1 child in
  * a binary tree
- * @tree: is a pointer to the root node of the tree to measure
- * the balance factor
+ * @tree: is a pointer to the root node of the tree to count
+ * the number of nodes
  * Return: return number of nodes with at least 1 child in a binary tree
  */
 
