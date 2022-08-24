@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <math.h>
 
 /**
  * binary_tree_is_perfect - checks if a binary tree is perfect
@@ -9,7 +8,7 @@
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t height, size;
+	int height, size;
 
 	if (tree == NULL)
 		return (0);
@@ -18,7 +17,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	size = binary_tree_size(tree);
 
 	/** A perfect binary tree of height h has pow (2, h +1) – 1 == size. **/
-	return (pow(2, height + 1) - 1 == size);
+	return (power(2, height + 1) - 1 == size);
 }
 
 
@@ -56,4 +55,20 @@ size_t binary_tree_size(const binary_tree_t *tree)
 		return (0);
 
 	return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
+}
+
+/**
+ * power - returns the value of x raised to the power of y
+ * @x: the value to exponentiate
+ * @y: the power to raise x to
+ * Return: x to the power of y
+ */
+
+int power(int x, int y)
+{
+	if (x == 0)
+		return (0);
+	if (y == 0)
+		return (1);
+	return (x * power(x, y - 1));
 }
