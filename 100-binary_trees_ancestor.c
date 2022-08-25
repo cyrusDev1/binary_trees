@@ -7,17 +7,37 @@
  * Return:a pointer to the uncle node or NULL
  */
 
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(
+	const binary_tree_t *first, const binary_tree_t *second)
 {
-    size_t first_parent_depht, second_parent_depht;
+	size_t first_parent_depht, second_parent_depht;
 
-    if (first == NULL || second == NULL)
-        return (NULL);
+	if (first == NULL || second == NULL)
+		return (NULL);
 
-    first_parent_depht = binary_tree_depth(first->parent);
-    second_parent_depht = binary_tree_depth(second->parent);
+	first_parent_depht = binary_tree_depth(first->parent);
+	second_parent_depht = binary_tree_depth(second->parent);
 
-    return (first_parent_depht >= second_parent_depht ? first->parent : second->parent);
+	while (first_parent_depht > second_parent_depht)
+	{
+		first = first->parent;
+		first_parent_depht -= 1;
+	}
+	while (second_parent_depht > first_parent_depht)
+	{
+		second = second->parent;
+		second_parent_depht -= 1;
+	}
+
+	while (first != NULL && second != NULL)
+	{
+		if (first == second)
+			return ((binary_tree_t *) first);
+		first = first->parent;
+		second = second->parent;
+	}
+
+	return ((binary_tree_t *) second);
 }
 
 /**
